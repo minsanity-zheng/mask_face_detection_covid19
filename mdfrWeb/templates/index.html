@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>Mask Dection And Face Recognition</title>
+	
+	<style type="text/css">
+		#faceShow {
+			position:absolute;
+			top: 50%;
+			left: 50%;
+			width:20em;
+			height:18em;
+			margin-top: -9em;
+			margin-left: -15em;
+		}
+  </style>
+  </head>
+  <body>
+    <h1 style="text-align:center">Mask Dection And Face Recognition</h1>
+	<div id="faceShow">
+		<img src="{{ url_for('video_feed') }}">
+	</div>
+  </body>
+</html>
