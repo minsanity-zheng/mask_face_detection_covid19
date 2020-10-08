@@ -1,0 +1,3 @@
+pip install flask
+pip install opencv-contrib-python
+pip install imutils

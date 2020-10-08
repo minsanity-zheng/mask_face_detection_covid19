@@ -1,0 +1,3 @@
+.DS_Store
+mdfrWeb/mask_detection/__pycache__/*
+yolov4/data/.DS_Store

@@ -111,9 +111,11 @@ class MaskDetector:
                         #for (x, y, w, h) in faces:
                         #face_frame = cv2.cvtColor(crop, cv2.COLOR_BGR2RGB)
                         face_frame = img_to_array(crop)
-                        face_frame = cv2.resize(face_frame,(160, 160))
-                        encode = MaskDetector.get_embedding(face_frame,model_Face)
-                        name = MaskDetector.find_person(encode,database)
+                        name = "None"
+                        if face_frame.size!=0 :
+                            face_frame = cv2.resize(face_frame,(160, 160))
+                            encode = MaskDetector.get_embedding(face_frame,model_Face)
+                            name = MaskDetector.find_person(encode,database)
                         if name == "None":
                             label = "Not found"
                         else :
@@ -121,6 +123,7 @@ class MaskDetector:
 
                         classIDs.append(classID)
                         names.append(label)
+                        print(len(names))
                         print(label)
 
         #apply non-maximal suppression to suppress weak, overlapping bounding boxes
@@ -138,4 +141,4 @@ class MaskDetector:
                 color = [int(c) for c in COLORS[classIDs[i]]]
                 cv2.rectangle(frame, (x, y), (x + w, y + h), color, 2)
                 text = "{}: {:.4f}".format(LABELS[classIDs[i]]+":"+names[i], confidences[i])
-                cv2.putText(frame, text, (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
+                cv2.putText(frame, text, (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 1.5, color, 10)

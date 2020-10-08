@@ -18,10 +18,10 @@ from mask_detection.models import MaskDetector
 
 # setup the path for YOLOv4
 YOLO_PATH="yolov4"
-OUTPUT_FILE="output/outfile.avi"
 
 # load the class labels our YOLO model was trained
-labelsPath = os.path.sep.join([YOLO_PATH, "classes.names"])
+labelsPath = os.path.sep.join([YOLO_PATH+"/data", "classes.names"])
+print(labelsPath)
 LABELS = open(labelsPath).read().strip().split("\n")
 
 # initialize a list of colors to represent each possible class label
@@ -29,8 +29,8 @@ np.random.seed(42)
 COLORS = np.random.randint(0, 255, size=(len(LABELS), 3), dtype="uint8")
 
 # derive the paths to the YOLO weights and model configuration
-weightsPath = os.path.sep.join([YOLO_PATH, "yolov4.weights"])
-configPath = os.path.sep.join([YOLO_PATH, "yolov4.cfg"])
+weightsPath = os.path.sep.join([YOLO_PATH+"/backup", "yolov4_custom_train_final.weights"])
+configPath = os.path.sep.join([YOLO_PATH+"/cfg", "yolov4_custom_test.cfg"])
 
 # load our YOLO object detector and determine only the *output* layer names
 print("[INFO] loading YOLO from disk...")
